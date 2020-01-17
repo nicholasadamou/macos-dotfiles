@@ -17,6 +17,9 @@ declare LOCAL_BASH_CONFIG_FILE="$HOME/.bash.local"
 
 # LIBRARY
 source "$DOTFILES_PATH"/lib/brew.sh
+source "$DOTFILES_PATH"/lib/fish/fish.sh
+source "$DOTFILES_PATH"/lib/fish/fisher.sh
+source "$DOTFILES_PATH"/lib/fish/omf.sh
 
 # EXECUTION
 create_bash_local() {
@@ -108,6 +111,46 @@ export PATH"
     fi
 }
 
+# see: https://github.com/oh-my-fish/oh-my-fish/issues/189
+install_omf() {
+    if ! is_omf_installed; then
+		# Make sure '$HOME/.local/share/omf' does not exist prior
+		# to 'omf' installation.
+
+		if [ -d "$HOME/.local/share/omf" ]; then
+			sudo rm -rf "$HOME/.local/share/omf"
+		fi
+
+		# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        fish <(curl -Ls https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install) \
+				--noninteractive --yes --path=$HOME/.local/share/omf --config=$HOME/.config/omf
+    fi
+}
+
+install_omf_packages() {
+	omf_install "z"
+    omf_install "thefuck"
+
+    omf_update
+}
+
+install_fisher() {
+    if ! is_fisher_installed; then
+        curl -Lo $HOME/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
+	fi
+}
+
+install_fisher_packages() {
+    does_fishfile_exist && {
+        cat < "$HOME/.config/fish/fishfile" | while read -r PACKAGE; do
+            fisher_install "$PACKAGE"
+        done
+    }
+
+    fisher_update
+}
+
 main() {
 	create_bash_local
 
@@ -119,6 +162,14 @@ main() {
 	brew_bundle_install "$DOTFILES_PATH/base/Brewfile"
 
 	change_default_bash
+
+	install_omf
+
+    install_omf_packages
+
+	install_fisher
+
+	install_fisher_packages
 }
 
 main

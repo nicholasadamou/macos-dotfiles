@@ -25,9 +25,9 @@ if [[ -d "$HOME" ]]; then
       printf "  %s\n\n" "q: Quit/Exit."
       read -r -p "Enter selection: " response
       printf "\n"
-      process_option $response
+      process_option "$response"
     else
-      process_option $1
+      process_option "$1"
     fi
     break
   done

@@ -8,7 +8,7 @@ show_files() {
   printf "%s\n" "Managed Dotfiles:"
 
   for file in $(home_files); do
-    printf "  %s\n" "$(base_dest_file $file)"
+    printf "  %s\n" "$(base_dest_file "$file")"
   done
 }
 export -f show_files
@@ -18,7 +18,7 @@ install_files() {
   printf "%s\n" "Installing dotfiles..."
 
   for file in $(home_files); do
-    install_file $file
+    install_file "$file"
   done
 
   printf "%s\n" "Dotfiles install complete!"
@@ -30,11 +30,11 @@ export -f install_files
 # $1 = The file name.
 install_file() {
   local source_file="$1"
-  local dest_file="$HOME/$(base_dest_file $source_file)"
-  local dest_dir="$(dirname $dest_file)"
+  local dest_file="$HOME/$(base_dest_file "$source_file")"
+  local dest_dir="$(dirname "$dest_file")"
 
-  if [[ "$(basename $source_file)" == "mkdir.command" ]]; then
-    mkdir -p $dest_dir
+  if [[ "$(basename "$source_file")" == "mkdir.command" ]]; then
+    mkdir -p "$dest_dir"
     return
   fi
 
@@ -51,7 +51,7 @@ link_files() {
   printf "%s\n" "Linking dotfiles..."
 
   for file in $(home_files); do
-    link_file $file
+    link_file "$file"
   done
 
   printf "%s\n" "Dotfiles link complete!"
@@ -63,12 +63,12 @@ export -f link_files
 # $1 = The file name.
 link_file() {
   local source_file="$PWD/$1"
-  local dest_file="$HOME/$(base_dest_file $1)"
-  local dest_dir="$(dirname $dest_file)"
+  local dest_file="$HOME/$(base_dest_file "$1")"
+  local dest_dir="$(dirname "$dest_file")"
   local excludes=".+(env.sh.tt|.gitconfig.tt)$"
 
-  if [[ "$(basename $source_file)" == "mkdir.command" ]]; then
-    mkdir -p $dest_dir
+  if [[ "$(basename "$source_file")" == "mkdir.command" ]]; then
+    mkdir -p "$dest_dir"
     return
   fi
 
@@ -87,7 +87,7 @@ check_files() {
   printf "%s\n" "Dotfiles Changes:"
 
   for file in $(home_files); do
-    check_file $file
+    check_file "$file"
   done
 
   printf "%s\n" "Dotfiles check complete!"
@@ -99,13 +99,13 @@ export -f check_files
 # $1 = The file name.
 check_file() {
   local source_file="$1"
-  local dest_file="$HOME/$(base_dest_file $1)"
+  local dest_file="$HOME/$(base_dest_file "$1")"
   local excludes=".+command$"
 
   if [[ "$source_file" =~ $excludes ]]; then
     return
   elif [[ -e "$dest_file" || -h "$dest_file" ]]; then
-    if [[ "$(diff $dest_file $source_file)" != '' ]]; then
+    if [[ "$(diff "$dest_file" "$source_file")" != '' ]]; then
       printf "  * %s\n" "$dest_file"
     fi
   else
@@ -119,7 +119,7 @@ delete_files() {
   printf "%s\n" "Deleting dotfiles..."
 
   for file in $(home_files); do
-    delete_file $file
+    delete_file "$file"
   done
 
   printf "%s\n" "Dotfiles deletion complete!"
@@ -130,7 +130,7 @@ export -f delete_files
 # Parameters:
 # $1 = The file name.
 delete_file() {
-  local dest_file="$HOME/$(base_dest_file $1)"
+  local dest_file="$HOME/$(base_dest_file "$1")"
   local excludes=".+(env.sh|.gitconfig)$"
 
   # Proceed only if file exists.

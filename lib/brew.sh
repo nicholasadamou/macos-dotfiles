@@ -25,7 +25,7 @@ brew_bundle_install() {
     if [ -e "$FILE_PATH" ]; then
 
         . "$LOCAL_BASH_CONFIG_FILE" \
-            && brew bundle install -v --file=\"$FILE_PATH\"
+            && brew bundle install -v --file="$FILE_PATH"
 
     fi
 }

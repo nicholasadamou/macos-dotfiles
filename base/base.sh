@@ -157,7 +157,7 @@ install_fisher() {
 
 install_fisher_packages() {
     does_fishfile_exist && {
-        cat < "$DOTFILES_PATH/.dotfiles/tag-macos/.config/fish/fishfile" | while read -r PACKAGE; do
+        cat < "$DOTFILES_PATH/.dotfiles/tag-macos/config/fish/fishfile" | while read -r PACKAGE; do
             fisher_install "$PACKAGE"
         done
     }

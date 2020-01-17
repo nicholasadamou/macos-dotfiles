@@ -115,9 +115,11 @@ main() {
 	if ! command -v brew > /dev/null; then
 		ruby -e "$(curl --location --fail --silent --show-error https://raw.githubusercontent.com/Homebrew/install/master/install)"
 		add_brew_configs
-		brew_bundle_install "$DOTFILES_PATH/base/Brewfile"
-		change_default_bash
 	fi
+
+	brew_bundle_install "$DOTFILES_PATH/base/Brewfile"
+
+	change_default_bash
 }
 
 main

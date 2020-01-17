@@ -79,6 +79,7 @@ For example, executing `bin/run -s` will show all managed dotfiles by this proje
 After install, the following files will require manual updating:
 
 - `.bash.local`: Add secret/machine-specific environment settings (if any).
+- `.fish.local`: Add secret/machine-specific environment settings (if any).
 - `.gitconfig`: Uncomment the name, email, and token lines within the `[user]` and `[github]`
   sections to replace with your own details.
 

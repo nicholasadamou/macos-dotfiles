@@ -56,7 +56,7 @@ print_help() {
 	# Display the usage message.
 	printf "%s\n" "Dotfile Installer"
 	printf "%s\n" "Usage: $0 [-b|--base] [-s] [-c] [-l] [-d] [-h|--help] [-q]"
-	printf "  %s\n" "-b,--base: Run base module (on by default)."
+	printf "  %s\n" "-b,--base: Run base module."
 	printf "  %s\n" "-s: Show managed dotfiles."
 	printf "  %s\n" "-c: Check for broken symlinks in \$HOME directorys."
 	printf "  %s\n" "-l: Symlink dotfiles (existing files are skipped)."

@@ -40,8 +40,10 @@ more.
 
 To install my `dotfiles`, just run the following snippet in [`iTerm2`](https://www.iterm2.com/) or `terminal`:
 
-    git clone https://github.com/nicholasadamou/macos-dotfiles.git dotfiles
-    cd dotfiles
+    git clone https://github.com/nicholasadamou/macos-dotfiles.git dotfiles && \
+    	cd dotfiles && \
+    	bin/dotfiles -b && \
+    	bin/dotfiles -l
 
 Edit any of the files in the `.dotfiles/tag-macos` directory
 as you see fit. Then open a terminal window and execute the following command to install:

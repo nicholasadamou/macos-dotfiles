@@ -138,7 +138,7 @@ install_omf() {
 		# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         fish <(curl -Ls https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install) \
-				--noninteractive --yes --path=$HOME/.local/share/omf --config=$HOME/.config/omf
+				--noninteractive --yes --path="$HOME/.local/share/omf" --config="$HOME/.config/omf"
     fi
 }
 

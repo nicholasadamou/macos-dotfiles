@@ -35,8 +35,7 @@ create_bash_local() {
 }
 
 add_brew_configs() {
-    declare -r BASH_CONFIGS="
-# Homebrew - The missing package manager for macOS.
+    declare -r BASH_CONFIGS="# Homebrew - The missing package manager for macOS.
 export PATH=\"/usr/local/bin:\$PATH\"
 export PATH=\"/usr/local/sbin:\$PATH\"
 "

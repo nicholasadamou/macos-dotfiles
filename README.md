@@ -43,6 +43,8 @@ more.
 
 ## Setup
 
+[![xkcd: Automation](http://imgs.xkcd.com/comics/automation.png)](http://xkcd.com/1319/)
+
 Open a terminal window and execute the following commands:
 
 Current Version (stable)

@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/bin/bash
 
 # Send to .bashrc for all settings.
 if [[ -f $HOME/.bashrc ]]; then

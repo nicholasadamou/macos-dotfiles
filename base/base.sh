@@ -21,7 +21,7 @@ source "$DOTFILES_PATH"/lib/brew.sh
 # EXECUTION
 create_bash_local() {
     declare -r FILE_PATH="$LOCAL_BASH_CONFIG_FILE"
-	declare -r CONTENT="#! /usr/bin/env bash
+	declare -r CONTENT="#!/bin/bash
 
 # Add secret/machine specific key/value pairs here.
 # export EXAMPLE=\"An example of a secret/machine-specific key/value.\"

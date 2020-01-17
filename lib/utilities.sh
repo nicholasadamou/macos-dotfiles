@@ -55,12 +55,13 @@ export -f check_files
 print_help() {
 	# Display the usage message.
 	printf "%s\n" "Dotfile Installer"
-	printf "%s\n" "Usage: $0 [-b|--base|--(no-)base] [-s] [-c] [-l] [-d] [-q]"
-	printf "  %s\n" "-b,--base,--no-base: Run base module (on by default)."
+	printf "%s\n" "Usage: $0 [-b|--base] [-s] [-c] [-l] [-d] [-h|--help] [-q]"
+	printf "  %s\n" "-b,--base: Run base module (on by default)."
 	printf "  %s\n" "-s: Show managed dotfiles."
 	printf "  %s\n" "-c: Check for broken symlinks in \$HOME directorys."
 	printf "  %s\n" "-l: Symlink dotfiles (existing files are skipped)."
 	printf "  %s\n" "-d: Delete dotfiles."
+	printf "  %s\n" "-h: Print this help message."
 	printf "  %s\n\n" "-q: Quit/Exit."
 }
 export -f print_help

@@ -8,28 +8,20 @@
 # $1 = The option to process.
 process_option() {
   case $1 in
-		'-b|--no-base|--base|b|no-base')
-			_arg_base="on"
-
-			test "${1:0:5}" = "--no-" && _arg_base="off"
-			test "${1:0:5}" = "no-" && _arg_base="off"
-
-			# by default, run the base module.
-			if [[ ${_arg_base} == "on" ]]; then
-				bash "$DOTFILES_PATH"/base/base.sh
-			fi
+		-b|--base)
+			bash "$DOTFILES_PATH"/base/base.sh
 			;;
-    '-s|s')
+    -s)
       show_files;;
-		'-c|c')
+		-c)
 			check_files;;
-    '-l|l')
+    -l)
       symlink_files;;
-    '-d|d')
+    -d)
       delete_files;;
-		'-h|--help|h|help')
+		-h|--help)
 			show_help;;
-    '-q|q');;
+    -q);;
     *)
       printf "%s\n" "ERROR: Invalid option.";;
   esac

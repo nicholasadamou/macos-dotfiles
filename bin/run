@@ -24,9 +24,6 @@ main() {
 		while true; do
 			if [[ $# == 0 ]]; then
 				print_help
-				read -r -p "[?] Enter selection: " response
-				printf "\n"
-				process_option "$response"
 			else
 				process_option "$@"
 			fi

@@ -3,9 +3,6 @@
 # DESCRIPTION
 # Defines general utility functions.
 
-# LIBRARY
-source "$DOTFILES_PATH"/lib/git.sh
-
 # VARIABLES
 declare DOTFILES_PATH="$HOME/dotfiles"
 
@@ -56,17 +53,8 @@ export -f check_files
 
 # Update the dotfiles repository.
 update_dotfiles() {
-	BRANCH="$1"
-
-	# -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-	if is_git_repo && has_remote_origin; then
-			if is_git_repo_out_of_date "$BRANCH"; then
-				git -C "${DOTFILES_PATH}" pull --ff
-			else
-				printf "%s\n" "${DOTFILES_PATH} @ $BRANCH is already up-to-date"
-			fi
-	fi
+	rm -rf "${DOTFILES_PATH}" && \
+		git clone https://github.com/nicholasadamou/macos-dotfiles.git "${DOTFILES_PATH}"
 }
 export -f update_dotfiles
 

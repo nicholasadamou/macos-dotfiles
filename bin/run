@@ -21,14 +21,11 @@ source "$DOTFILES_PATH"/lib/options.sh
 # EXECUTION
 main() {
 	if [[ -d "$HOME" ]]; then
-		while true; do
-			if [[ $# == 0 ]]; then
-				print_help
-			else
-				process_option "$@"
-			fi
-			break
-		done
+		if [[ $# == 0 ]]; then
+			print_help
+		else
+			process_option "$@"
+		fi
 	else
 		printf "[X] %s\n" "ERROR: $HOME does not exist."
 		return 1

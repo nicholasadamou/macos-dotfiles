@@ -47,9 +47,6 @@ more.
 
 To install my `dotfiles`, just run the following snippet in [`iTerm2`](https://www.iterm2.com/) or `terminal`:
 
-(⚠️ **DO NOT** run the `install` snippet if you don't fully
-understand what it does. Seriously, **DON'T**!)
-
 Current Version (stable)
 
     git clone https://github.com/nicholasadamou/macos-dotfiles.git dotfiles

@@ -40,7 +40,7 @@ install_file() {
 
   if [[ ! -f "$dest_file" ]]; then
     mkdir -p "$dest_dir"
-    cp "$source_file" "$dest_file"
+    cp -r "$source_file" "$dest_file"
     printf "  + %s\n" "$dest_file"
   fi
 }

@@ -53,7 +53,8 @@ export -f check_files
 
 # Update the dotfiles repository.
 update_dotfiles() {
-	rm -rf "${DOTFILES_PATH}" && \
+	cd "$HOME" && \
+		rm -rf "${DOTFILES_PATH}" && \
 		git clone https://github.com/nicholasadamou/macos-dotfiles.git "${DOTFILES_PATH}"
 }
 export -f update_dotfiles

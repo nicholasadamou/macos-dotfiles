@@ -32,6 +32,9 @@ brew "exa"
 brew "bash"
 brew "bash-completion@2"
 
+# Install fish shell.
+brew "fish"	
+
 # Misc.
 brew "thefuck"
 brew "fzf"

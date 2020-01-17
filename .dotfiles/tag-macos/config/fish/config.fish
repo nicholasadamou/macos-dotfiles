@@ -4,9 +4,6 @@ source "$HOME/.config/fish/aliases/aliases.fish"
 # load fish variables
 source "$HOME/.config/fish/variables/variables.fish"
 
-# load local fish configurations
-source "$HOME/.fish.local"
-
 # load 'thefuck' configurations
 # see: https://github.com/nvbn/thefuck/wiki/Shell-aliases#fish
 if type -q thefuck

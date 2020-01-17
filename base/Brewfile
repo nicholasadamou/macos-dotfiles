@@ -34,3 +34,5 @@ brew "bash-completion@2"
 
 # Misc.
 brew "thefuck"
+brew "fzf"
+brew "fzy"

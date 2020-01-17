@@ -1,0 +1,35 @@
+#!/bin/bash
+
+declare current_dir && \
+    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
+    cd "${current_dir}"
+
+# DESCRIPTION
+# Executes the command line interface.
+
+# SETTINGS
+set -o errexit
+set -o pipefail
+
+# VARIABLES
+declare DOTFILES_PATH="$HOME/dotfiles"
+
+# LIBRARY
+source "$DOTFILES_PATH"/lib/utilities.sh
+source "$DOTFILES_PATH"/lib/options.sh
+
+# EXECUTION
+main() {
+	if [[ -d "$HOME" ]]; then
+		if [[ $# == 0 ]]; then
+			print_help
+		else
+			process_option "$@"
+		fi
+	else
+		printf "[X] %s\n" "ERROR: $HOME does not exist."
+		return 1
+	fi
+}
+
+main "$@"

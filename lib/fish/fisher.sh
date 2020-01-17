@@ -26,7 +26,7 @@ fisher_install() {
     # Install the specified package.
 
     if ! is_fisher_pkg_installed "$PACKAGE"; then
-        fish -c \"fisher add "$PACKAGE"\"
+        fish -c "fisher add $PACKAGE"
     fi
 }
 
@@ -59,5 +59,5 @@ fisher_update() {
 
     # Update package(s)
 
-    fish -c \"fisher ;and fisher self-update\"
+    fish -c "fisher ;and fisher self-update"
 }

@@ -24,7 +24,7 @@ omf_install() {
     # Install the specified package.
 
     if ! is_omf_pkg_installed "$PACKAGE"; then
-        fish -c \"omf install "$PACKAGE"\"
+        fish -c "omf install $PACKAGE"
     fi
 }
 
@@ -57,5 +57,5 @@ omf_update() {
 
     # Update package(s)
 
-    fish -c \"omf update\"
+    fish -c "omf update"
 }

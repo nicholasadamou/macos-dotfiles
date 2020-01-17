@@ -59,6 +59,8 @@ update_dotfiles() {
 	if is_git_repo && has_remote_origin; then
 			if is_git_repo_out_of_date "master"; then
 				git -C "${DOTFILES_PATH}" pull --ff
+			else
+				printf "%s\n" "${DOTFILES_PATH} is already up-to-date"
 			fi
 	fi
 }

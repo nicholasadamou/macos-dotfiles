@@ -3,158 +3,43 @@
 # DESCRIPTION
 # Defines general utility functions.
 
-# Shows managed files.
-show_files() {
-  printf "%s\n" "Managed Dotfiles:"
+# VARIABLES
+readonly DOTFILES_PATH="$HOME/dotfiles"
 
-  for file in $(home_files); do
-    printf "  %s\n" "$(base_dest_file "$file")"
-  done
+# Shows managed dot files.
+show_files() {
+  # List files that will be symlinked via 'rcup' using $DOTFILES_PATH/.dotifles/rcrc.
+	export RCRC="${DOTFILES_PATH}/.dotfiles/rcrc" && lsrc -v -d "${DOTFILES_PATH}/.dotfiles"
 }
 export -f show_files
 
-# Installs all files.
-install_files() {
-  printf "%s\n" "Installing dotfiles..."
+# Installs all dot files.
+symlink_files() {
+	# Update and/or install dotfiles. These dotfiles are stored in the .dotfiles directory.
+	# rcup is used to install files from the tag-specific dotfiles directory.
+	# rcup is part of rcm, a management suite for dotfiles.
+	# Check https://github.com/thoughtbot/rcm for more info.
 
-  for file in $(home_files); do
-    install_file "$file"
-  done
+	# Get the absolute path of the .dotfiles directory.
+	# This is only for aesthetic reasons to have an absolute symlink path instead of a relative one
+	# <path-to-dotfiles>/.dotfiles/somedotfile vs <path-to-dotfiles>/.dotfiles/tag-macos/../somedotfile
+	readonly dotfiles="${DOTFILES_PATH}/.dotfiles"
 
-  printf "%s\n" "Dotfiles install complete!"
+	# Remove broken symlinks in '$HOME' directory.
+	"${DOTFILES_PATH}"/bin/symlinks -rd "$HOME"
+
+	# Symlink files listed within dotfiles/rcrc to the '$HOME' directory.
+	export RCRC="$dotfiles/rcrc" && \
+					rcup -v -f -d "${dotfiles}"
 }
-export -f install_files
+export -f symlink_files
 
-# Installs a file.
-# Parameters:
-# $1 = The file name.
-install_file() {
-  local source_file="$1"
-  local dest_file="$HOME/$(base_dest_file "$source_file")"
-  local dest_dir="$(dirname "$dest_file")"
-
-  if [[ "$(basename "$source_file")" == "mkdir.command" ]]; then
-    mkdir -p "$dest_dir"
-    return
-  fi
-
-  if [[ ! -f "$dest_file" ]]; then
-    mkdir -p "$dest_dir"
-    cp -r "$source_file" "$dest_file"
-    printf "  + %s\n" "$dest_file"
-  fi
-}
-export -f install_file
-
-# Links all files.
-link_files() {
-  printf "%s\n" "Linking dotfiles..."
-
-  for file in $(home_files); do
-    link_file "$file"
-  done
-
-  printf "%s\n" "Dotfiles link complete!"
-}
-export -f link_files
-
-# Links a dotfile to this project.
-# Parameters:
-# $1 = The file name.
-link_file() {
-  local source_file="$PWD/$1"
-  local dest_file="$HOME/$(base_dest_file "$1")"
-  local dest_dir="$(dirname "$dest_file")"
-  local excludes=".+(env.sh.tt|.gitconfig.tt)$"
-
-  if [[ "$(basename "$source_file")" == "mkdir.command" ]]; then
-    mkdir -p "$dest_dir"
-    return
-  fi
-
-  if [[ ! -h "$dest_file" && ! "$source_file" =~ $excludes ]]; then
-    read -r -p "  Link $dest_file -> $source_file (y/n)? " response
-    if [[ $response == 'y' ]]; then
-      mkdir -p "$dest_dir"
-      ln -sf "$source_file" "$dest_file"
-    fi
-  fi
-}
-export -f link_file
-
-# Checks all files for changes.
-check_files() {
-  printf "%s\n" "Dotfiles Changes:"
-
-  for file in $(home_files); do
-    check_file "$file"
-  done
-
-  printf "%s\n" "Dotfiles check complete!"
-}
-export -f check_files
-
-# Checks a file for changes.
-# Parameters:
-# $1 = The file name.
-check_file() {
-  local source_file="$1"
-  local dest_file="$HOME/$(base_dest_file "$1")"
-  local excludes=".+command$"
-
-  if [[ "$source_file" =~ $excludes ]]; then
-    return
-  elif [[ -e "$dest_file" || -h "$dest_file" ]]; then
-    if [[ "$(diff "$dest_file" "$source_file")" != '' ]]; then
-      printf "  * %s\n" "$dest_file"
-    fi
-  else
-    printf "  - %s\n" "$dest_file"
-  fi
-}
-export -f check_file
-
-# Delete files.
+# Delete all dot files.
 delete_files() {
-  printf "%s\n" "Deleting dotfiles..."
+	# Remove files that were symlinked via 'rcup'.
+	export RCRC="${DOTFILES_PATH}/.dotfiles/rcrc" && rcdn -v -d "${DOTFILES_PATH}/.dotfiles"
 
-  for file in $(home_files); do
-    delete_file "$file"
-  done
-
-  printf "%s\n" "Dotfiles deletion complete!"
+	# Remove broken symlinks in '$HOME' directory.
+	"${DOTFILES_PATH}"/bin/symlinks -rd "$HOME"
 }
 export -f delete_files
-
-# Delete file.
-# Parameters:
-# $1 = The file name.
-delete_file() {
-  local dest_file="$HOME/$(base_dest_file "$1")"
-  local excludes=".+(env.sh|.gitconfig)$"
-
-  # Proceed only if file exists.
-  if [[ -e "$dest_file" || -h "$dest_file" ]] && [[ ! "$dest_file" =~ $excludes ]]; then
-    read -r -p "  Delete $dest_file (y/n)? " response
-    if [[ $response == 'y' ]]; then
-      rm -f "$dest_file"
-    fi
-  fi
-}
-export -f delete_file
-
-# Answers a list of files stored in the home_files folder of this project.
-home_files() {
-  for file in $(find home_files -type f); do
-    printf "%s\n" "$file"
-  done
-}
-export -f home_files
-
-base_dest_file() {
-  local source_file="$1"
-  local computed_file=''
-
-  printf "${source_file%.*}" | sed 's/home_files\///g'
-}
-export -f base_dest_file

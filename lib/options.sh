@@ -10,12 +10,8 @@ process_option() {
   case $1 in
     's')
       show_files;;
-    'i')
-      install_files;;
     'l')
-      link_files;;
-    'c')
-      check_files;;
+      symlink_files;;
     'd')
       delete_files;;
     'q');;

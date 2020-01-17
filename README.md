@@ -9,13 +9,12 @@
 Shell scripts for applying default settings to UNIX-based operating systems.
 
 By default, these are set to my preferences (namely for macOS) but you can change them to your
-liking by editing any of the `*.` files in the `home_files` directory. Read on to learn
+liking by editing any of the `*.` files in the `.dotfiles/tag-macos` directory. Read on to learn
 more.
 
 ## Table of Contents
 
 - [Features](#features)
-- [Requirements](#requirements)
 - [Setup](#setup)
 - [Upgrade](#upgrade)
 - [Versioning](#versioning)
@@ -42,10 +41,6 @@ more.
 - Adds [Node.js](http://nodejs.org) support.
 - Adds [Z](https://github.com/rupa/z) support.
 
-## Requirements
-
-- [macOS](https://github.com/bkuhlmann/mac_os)
-
 ## Setup
 
 Open a terminal window and execute the following commands:
@@ -54,14 +49,14 @@ Current Version (stable)
 
     git clone https://github.com/nicholasadamou/macos-dotfiles.git dotfiles
     cd dotfiles
-    git checkout 36.0.0
+    git checkout 1.0.0
 
 Master Version (unstable)
 
     git clone https://github.com/nicholasadamou/macos-dotfiles.git dotfiles
     cd dotfiles
 
-Edit any of the `*.` and/or `*.command` (command) files in the `home_files` directory
+Edit any of the `*.` files in the `.dotfiles/tag-macos` directory
 as you see fit. Then open a terminal window and execute the following command to install:
 
     cd dotfiles
@@ -71,9 +66,7 @@ Executing the `bin/run` script will present the following options:
 
     s: Show managed dotfiles.
     i: Install dotfiles (existing files are skipped).
-    l: Link dotfiles to this project (interactive per file, excludes: env.sh and .gitconfig).
-    c: Check for differences between $HOME files and this project's files.
-    d: Delete dotfiles (interactive per file, excludes: env.sh and .gitconfig).
+    d: Delete dotfiles.
     q: Quit/Exit.
 
 The options prompt can be skipped by passing the desired option directly to the `bin/run` script.
@@ -89,9 +82,7 @@ After install, the following files will require manual updating:
 
 When upgrading to a new version, run the following:
 
-1. Run: `bin/run l`. Links new files. If not using linked files, run `bin/run d` and `bin/run i`
-   instead.
-1. Run: `bin/run c`. Displays file differences, if any. Usually, this will be excluded files.
+1. Run: `bin/run d` and `bin/run i`
 1. Run: `exec $SHELL`. Updates current shell with the above changes.
 
 ## Versioning

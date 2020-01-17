@@ -58,7 +58,7 @@ command -v "hub" &> /dev/null && {
 command -v "lazygit" &> /dev/null && {
     alias lg="lazygit"
 }
-alias gs ="git status"
+alias gs="git status"
 alias acp="git add -A && git commit -v && git push"
 
 # thefuck - Magnificent app which corrects your previous console command.

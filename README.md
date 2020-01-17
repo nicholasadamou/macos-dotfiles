@@ -9,7 +9,7 @@
 Shell scripts for applying default settings to UNIX-based operating systems.
 
 By default, these are set to my preferences (namely for macOS) but you can change them to your
-liking by editing any of the `*.` files in the `.dotfiles/tag-macos` directory. Read on to learn
+liking by editing any of the files in the `.dotfiles/tag-macos` directory. Read on to learn
 more.
 
 ## Table of Contents
@@ -56,7 +56,7 @@ Master Version (unstable)
     git clone https://github.com/nicholasadamou/macos-dotfiles.git dotfiles
     cd dotfiles
 
-Edit any of the `*.` files in the `.dotfiles/tag-macos` directory
+Edit any of the files in the `.dotfiles/tag-macos` directory
 as you see fit. Then open a terminal window and execute the following command to install:
 
     cd dotfiles

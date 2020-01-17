@@ -70,6 +70,7 @@ Executing the `bin/run` script will present the following options:
     -c: Check for and remove all broken symlinks in $HOME directory.
     -l: Symlink dotfiles (existing files are skipped).
     -d: Delete dotfiles.
+    -u: Update the dotfiles repository.
     -h|--help: Print the help message.
 
 The options prompt can be skipped by passing the desired option directly to the `bin/run` script.
@@ -85,6 +86,7 @@ After install, the following files will require manual updating:
 
 When upgrading to a new version, run the following:
 
+1. Run: `bin/run -u`
 1. Run: `bin/run -b`
 1. Run: `bin/run -d` and `bin/run -l`
 1. Run: `exec $SHELL`. Updates current shell with the above changes.

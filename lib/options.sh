@@ -19,6 +19,8 @@ process_option() {
       symlink_files;;
     -d)
       delete_files;;
+		-u)
+			update_dotfiles;;
 		-h|--help)
 			show_help;;
     *)

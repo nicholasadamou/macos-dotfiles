@@ -3,6 +3,9 @@
 # DESCRIPTION
 # Defines general utility functions.
 
+# LIBRARY
+source "$DOTFILES_PATH"/lib/git.sh
+
 # VARIABLES
 declare DOTFILES_PATH="$HOME/dotfiles"
 
@@ -51,6 +54,16 @@ check_files() {
 }
 export -f check_files
 
+# Update the dotfiles repository.
+update_dotfiles() {
+	if is_git_repo && has_remote_origin; then
+			if is_git_repo_out_of_date "master"; then
+				git -C "${DOTFILES_PATH}" pull --ff
+			fi
+	fi
+}
+export -f update_dotfiles
+
 # Show the usage message.
 print_help() {
 	# Display the usage message.
@@ -60,6 +73,7 @@ print_help() {
 	printf "  %s\n" "-s: Show managed dotfiles."
 	printf "  %s\n" "-c: Check for and remove all broken symlinks in \$HOME directorys."
 	printf "  %s\n" "-l: Symlink dotfiles (existing files are skipped)."
+	printf "  %s\n" "-u: Update dotfiles repository."
 	printf "  %s\n" "-d: Delete dotfiles."
 	printf "  %s\n\n" "-h: Print this help message."
 }

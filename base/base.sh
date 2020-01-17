@@ -60,7 +60,7 @@ main() {
 		add_brew_configs
 	fi
 
-	brew_bundle_install "Brewfile"
+	brew_bundle_install "$DOTFILES_PATH/base/Brewfile"
 }
 
 main

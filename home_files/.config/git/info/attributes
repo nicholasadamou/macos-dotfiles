@@ -1,0 +1,5 @@
+*.gif diff=exif
+*.ico diff=exif
+*.jpeg diff=exif
+*.jpg diff=exif
+*.png diff=exif

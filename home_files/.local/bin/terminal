@@ -1,0 +1,57 @@
+#!/bin/bash
+#
+# Open new terminal window from the command line using v3 syntax for applescript as needed in terminal Version 3+
+# This script blocks until the cmd is executed in the new terminal window.  It then leaves the window open.
+
+# Usage:
+#     terminal                   Opens the current directory in a new terminal window
+#     terminal [PATH]            Open PATH in a new terminal window
+#     terminal [CMD]             Open a new terminal window and execute CMD
+#     terminal [PATH] [CMD]      Opens a new terminal window @ the PATH and executes CMD
+#
+# Example:
+#     terminal ~/Code/HelloWorld ./setup.sh
+#
+# Credit:
+#     Forked from https://gist.github.com/vyder/96891b93f515cb4ac559e9132e1c9086
+#     Inspired by tab.bash by @bobthecow
+#     link: https://gist.github.com/bobthecow/757788
+
+# Mac OS only
+[ "$(uname -s)" != "Darwin" ] && {
+	echo 'Mac OS Only'
+	return
+}
+
+function terminal() {
+    local cmd=""
+    local wd="$PWD"
+    local args="$*"
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if [ -d "$1" ]; then
+        wd="$1"
+        args="${*:2}"
+    fi
+
+    if [ -n "$args" ]; then
+        cmd="$args"
+    fi
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    osascript <<EOF
+tell application "Terminal"
+	activate
+	tell window 1
+		do script "cd $wd ; $cmd"
+		repeat while busy
+            delay 1
+        end repeat
+	end tell
+end tell
+EOF
+}
+
+terminal "$@"

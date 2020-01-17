@@ -22,8 +22,6 @@ source "$DOTFILES_PATH"/lib/options.sh
 main() {
 	bash "$DOTFILES_PATH"/base/base.sh
 
-	clear
-
 	if [[ -d "$HOME" ]]; then
 		while true; do
 			if [[ $# == 0 ]]; then

@@ -110,15 +110,6 @@ export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 # OpenSSL
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
-# GPG
-GPG_TTY=$(tty)
-export GPG_TTY
-
-# direnv
-if [[ -e /usr/local/bin/direnv ]]; then
-  eval "$(direnv hook bash)"
-fi
-
 # FZF
 export FZF_DEFAULT_COMMAND="fd --type file --follow --hidden --color always --exclude .git"
 export FZF_DEFAULT_OPTS="--multi --ansi"
@@ -130,7 +121,7 @@ export PATH="$PATH:/usr/local/share/npm/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # Yarn
-if command -v yarn &&> /dev/null; then
+if command -v yarn &> /dev/null; then
 	export PATH="$PATH:$(yarn global bin)"
 fi
 
@@ -159,16 +150,16 @@ if [ -d "$HOME/.local/bin" ]; then
 	export PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Add ~/.iterm2 to $PATH
-if [ -d "$HOME/.iterm2" ]; then
-	export PATH="$HOME/.iterm2:$PATH"
-fi
-
 # Add /usr/local/bin to $PATH
 if command -v brew &> /dev/null; then
 	if [ -d "$(brew --prefix)/bin" ]; then
 		export PATH="$(brew --prefix)/bin:$PATH"
 	fi
+fi
+
+# add $HOME/dotfiles/bin to $PATH
+if [ -d "$HOME/dotfiles/bin" ]; then
+	export PATH="$HOME/dotfiles/bin:$PATH"
 fi
 
 # Clear system messages (system copyright notice, the date

@@ -16,44 +16,29 @@ more.
 
 - [Features](#features)
 - [Setup](#setup)
-- [Upgrade](#upgrade)
-- [Versioning](#versioning)
-- [Code of Conduct](#code-of-conduct)
-- [Contributions](#contributions)
+- [Updating](#updating)
 - [License](#license)
-- [History](#history)
-- [Credits](#credits)
 
 ## Features
 
 - Configures the Bash `.bashrc`, `.bash_profile`, and `.inputrc` files.
 - Configures the `.hushlogin` & `.bash_logout` files.
-- Configures the [CTags](http://ctags.sourceforge.net) `.ctags` file.
-- Configures the [Vim](http://www.vim.org) `.vimrc` file.
-- Configures the [Git](http://git-scm.com) `.gitconfig`, `.gitignore`, and hook (i.e.
-  `.git_template`) files.
+- Configures `fish` along with `fisher` and `omf` along with a few of their packages.
+- Configures the [Git](http://git-scm.com) `.gitconfig`.
 - Configures the [Silver Surfer](https://github.com/ggreer/the_silver_searcher) `.agignore` file.
 - Configures the [NPM](https://www.npmjs.org) `.npmrc` file.
 - Configures [Visual Studio Code](https://code.visualstudio.com/) as the default editor.
 - Adds [Bash Completion](http://bash-completion.alioth.debian.org).
 - Adds [GPG](https://www.gnupg.org) support.
-- Adds [direnv](http://direnv.net) support.
 - Adds [Node.js](http://nodejs.org) support.
 - Adds [Z](https://github.com/rupa/z) support.
+- Adds [tmux](https://github.com/tmux/tmux) support.
 
 ## Setup
 
 [![xkcd: Automation](http://imgs.xkcd.com/comics/automation.png)](http://xkcd.com/1319/)
 
 To install my `dotfiles`, just run the following snippet in [`iTerm2`](https://www.iterm2.com/) or `terminal`:
-
-Current Version (stable)
-
-    git clone https://github.com/nicholasadamou/macos-dotfiles.git dotfiles
-    cd dotfiles
-    git checkout 1.0.0
-
-Master Version (unstable)
 
     git clone https://github.com/nicholasadamou/macos-dotfiles.git dotfiles
     cd dotfiles
@@ -65,18 +50,18 @@ as you see fit. Then open a terminal window and execute the following command to
     bin/run --base
     bin/run -l
 
-Executing the `bin/run` script will present the following options:
+Executing the `bin/dotfiles` script will present the following options:
 
     -b|--base: Run the base module.
     -s: Show managed dotfiles.
     -c: Check for and remove all broken symlinks in $HOME directory.
     -l: Symlink dotfiles (existing files are skipped).
     -d: Delete dotfiles.
-    -u: Update the dotfiles repository.
+    -u: Update the dotfiles repository to the latest stable version.
     -h|--help: Print the help message.
 
-The options prompt can be skipped by passing the desired option directly to the `bin/run` script.
-For example, executing `bin/run -s` will show all managed dotfiles by this project.
+The options prompt can be skipped by passing the desired option directly to the `bin/dotfiles` script.
+For example, executing `bin/dotfiles -s` will show all managed dotfiles by this project.
 
 After install, the following files will require manual updating:
 
@@ -85,41 +70,19 @@ After install, the following files will require manual updating:
 - `.gitconfig`: Uncomment the name, email, and token lines within the `[user]` and `[github]`
   sections to replace with your own details.
 
-## Upgrade
+## Updating
 
-When upgrading to a new version, run the following:
+When updating, run the following:
 
-1. Run: `bin/run -u`
-1. Run: `bin/run -b`
-1. Run: `bin/run -d` and `bin/run -l`
+1. Run: `bin/dotfiles -b`
+1. Run: `bin/dotfiles -d` and `bin/dotfiles -l`
 1. Run: `exec $SHELL`. Updates current shell with the above changes.
 
-## Versioning
+or simply run:
 
-Read [Semantic Versioning](https://semver.org) for details. Briefly, it means:
-
-- Major (X.y.z) - Incremented for any backwards incompatible public API changes.
-- Minor (x.Y.z) - Incremented for new, backwards compatible, public API enhancements/fixes.
-- Patch (x.y.Z) - Incremented for small, backwards compatible, bug fixes.
-
-## Code of Conduct
-
-Please note that this project is released with a [CODE OF CONDUCT](CODE_OF_CONDUCT.md). By
-participating in this project you agree to abide by its terms.
-
-## Contributions
-
-Read [CONTRIBUTING](CONTRIBUTING.md) for details.
+    bin/dotfiles -u
 
 ## License
 
 Copyright 2020 [Nicholas Adamou](https://www.nicholasadamou.com).
 Read [LICENSE](LICENSE.md) for details.
-
-## History
-
-Read [CHANGES](CHANGES.md) for details.
-
-## Credits
-
-Developed by [Nicholas Adamou](http://nicholasadamou.com).

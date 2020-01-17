@@ -78,7 +78,6 @@ When updating, run the following:
 
 1. Run: `bin/dotfiles -b`
 1. Run: `bin/dotfiles -d` and `bin/dotfiles -l`
-1. Run: `exec $SHELL`. Updates current shell with the above changes.
 
 or simply run:
 

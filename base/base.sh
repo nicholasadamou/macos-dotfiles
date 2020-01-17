@@ -151,13 +151,13 @@ install_omf_packages() {
 
 install_fisher() {
     if ! is_fisher_installed; then
-        curl -Lo $HOME/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
+        curl -Lso $HOME/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
 	fi
 }
 
 install_fisher_packages() {
     does_fishfile_exist && {
-        cat < "$HOME/.config/fish/fishfile" | while read -r PACKAGE; do
+        cat < "$DOTFILES_PATH/.dotfiles/tag-macos/.config/fish/fishfile" | while read -r PACKAGE; do
             fisher_install "$PACKAGE"
         done
     }

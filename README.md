@@ -65,6 +65,7 @@ as you see fit. Then open a terminal window and execute the following command to
 Executing the `bin/run` script will present the following options:
 
     s: Show managed dotfiles.
+    c: Check for broken symlinks in $HOME directory.
     l: Symlink dotfiles (existing files are skipped).
     d: Delete dotfiles.
     q: Quit/Exit.

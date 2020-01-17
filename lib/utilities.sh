@@ -26,7 +26,7 @@ symlink_files() {
 	readonly dotfiles="${DOTFILES_PATH}/.dotfiles"
 
 	# Remove broken symlinks in '$HOME' directory.
-	"${DOTFILES_PATH}"/bin/symlinks -rd "$HOME"
+	check_files
 
 	# Symlink files listed within dotfiles/rcrc to the '$HOME' directory.
 	export RCRC="$dotfiles/rcrc" && \
@@ -40,6 +40,13 @@ delete_files() {
 	export RCRC="${DOTFILES_PATH}/.dotfiles/rcrc" && rcdn -v -d "${DOTFILES_PATH}/.dotfiles"
 
 	# Remove broken symlinks in '$HOME' directory.
-	"${DOTFILES_PATH}"/bin/symlinks -rd "$HOME"
+	check_files
 }
 export -f delete_files
+
+# Check for broken symlinks.
+check_files() {
+	# Remove broken symlinks in '$HOME' directory.
+	"${DOTFILES_PATH}"/bin/symlinks -rd "$HOME"
+}
+export -f check_files

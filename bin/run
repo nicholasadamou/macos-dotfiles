@@ -28,6 +28,7 @@ main() {
 				printf "\n%s\n" "Usage: run OPTION"
 				printf "\n%s\n" "Dotfile Options:"
 				printf "  %s\n" "s: Show managed dotfiles."
+				printf "  %s\n" "c: Check for broken symlinks in \$HOME directorys."
 				printf "  %s\n" "l: Symlink dotfiles (existing files are skipped)."
 				printf "  %s\n" "d: Delete dotfiles."
 				printf "  %s\n\n" "q: Quit/Exit."

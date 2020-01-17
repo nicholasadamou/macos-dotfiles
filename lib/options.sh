@@ -10,6 +10,8 @@ process_option() {
   case $1 in
     's')
       show_files;;
+		'c')
+			check_files;;
     'l')
       symlink_files;;
     'd')

@@ -71,7 +71,7 @@ print_help() {
 	printf "  %s\n" "-s: Show managed dotfiles."
 	printf "  %s\n" "-c: Check for and remove all broken symlinks in \$HOME directorys."
 	printf "  %s\n" "-l: Symlink dotfiles (existing files are skipped)."
-	printf "  %s\n" "-u VERSION: Update the dotfiles repository to the latest stable version."
+	printf "  %s\n" "-u: Update the dotfiles repository to the latest version."
 	printf "  %s\n" "-d: Delete dotfiles."
 	printf "  %s\n\n" "-h: Print this help message."
 }

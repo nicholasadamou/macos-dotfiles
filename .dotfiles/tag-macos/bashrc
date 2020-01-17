@@ -101,9 +101,11 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 . "$HOME/.bash_logout"
 
 # Bash Completion
-if [[ -f /usr/local/etc/bash_completion ]]; then
-  . /usr/local/etc/bash_completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
 fi
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 # OpenSSL
 export PATH="/usr/local/opt/openssl/bin:$PATH"

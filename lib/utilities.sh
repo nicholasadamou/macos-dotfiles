@@ -4,7 +4,7 @@
 # Defines general utility functions.
 
 # VARIABLES
-readonly DOTFILES_PATH="$HOME/dotfiles"
+declare DOTFILES_PATH="$HOME/dotfiles"
 
 # Shows managed dot files.
 show_files() {

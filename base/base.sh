@@ -12,7 +12,7 @@ set -o errexit
 set -o pipefail
 
 # VARIABLES
-readonly DOTFILES_PATH="$HOME/dotfiles"
+declare DOTFILES_PATH="$HOME/dotfiles"
 
 declare LOCAL_BASH_CONFIG_FILE="$DOTFILES_PATH/.dotfiles/tag-macos/.config/bash/env.sh"
 

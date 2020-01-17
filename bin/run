@@ -12,7 +12,7 @@ set -o errexit
 set -o pipefail
 
 # VARIABLES
-readonly DOTFILES_PATH="$HOME/dotfiles"
+declare DOTFILES_PATH="$HOME/dotfiles"
 
 # LIBRARY
 source "$DOTFILES_PATH"/lib/utilities.sh

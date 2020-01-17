@@ -4,7 +4,7 @@
 
 # Dotfiles
 
-[![Circle CI Status](https://circleci.com/gh/nicholasadamou/dotfiles.svg?style=svg)](https://circleci.com/gh/nicholasadamou/dotfiles)
+[![Circle CI Status](https://circleci.com/gh/nicholasadamou/macos-dotfiles.svg?style=svg)](https://circleci.com/gh/nicholasadamou/macos-dotfiles)
 
 Shell scripts for applying default settings to UNIX-based operating systems.
 

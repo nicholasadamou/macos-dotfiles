@@ -20,7 +20,7 @@ process_option() {
     -d)
       delete_files;;
 		-u)
-			update_dotfiles;;
+			update_dotfiles "$2";;
 		-h|--help)
 			show_help;;
     *)

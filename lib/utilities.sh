@@ -56,11 +56,15 @@ export -f check_files
 
 # Update the dotfiles repository.
 update_dotfiles() {
+	BRANCH="$1"
+
+	# -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 	if is_git_repo && has_remote_origin; then
-			if is_git_repo_out_of_date "master"; then
+			if is_git_repo_out_of_date "$BRANCH"; then
 				git -C "${DOTFILES_PATH}" pull --ff
 			else
-				printf "%s\n" "${DOTFILES_PATH} is already up-to-date"
+				printf "%s\n" "${DOTFILES_PATH} @ $BRANCH is already up-to-date"
 			fi
 	fi
 }
@@ -70,7 +74,7 @@ export -f update_dotfiles
 print_help() {
 	# Display the usage message.
 	printf "%s\n" "Dotfile Installer"
-	printf "%s\n" "Usage: $0 [-b|--base] [-s] [-c] [-l] [-d] [-h|--help] [-q]"
+	printf "%s\n" "Usage: $0 [-b|--base] [-s] [-c] [-l] [-d] [-u] [-h|--help] [-q]"
 	printf "  %s\n" "-b,--base: Run base module."
 	printf "  %s\n" "-s: Show managed dotfiles."
 	printf "  %s\n" "-c: Check for and remove all broken symlinks in \$HOME directorys."

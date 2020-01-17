@@ -119,7 +119,6 @@ Read [LICENSE](LICENSE.md) for details.
 ## History
 
 Read [CHANGES](CHANGES.md) for details.
-Built with [Bashsmith](https://github.com/bkuhlmann/bashsmith).
 
 ## Credits
 

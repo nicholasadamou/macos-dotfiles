@@ -122,6 +122,4 @@ Read [CHANGES](CHANGES.md) for details.
 
 ## Credits
 
-Developed by [Brooke Kuhlmann](https://www.alchemists.io) at
-[Alchemists](https://www.alchemists.io).
-Forked & Modified by [Nicholas Adamou](http://nicholasadamou.com).
+Developed by [Nicholas Adamou](http://nicholasadamou.com).

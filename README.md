@@ -45,7 +45,10 @@ more.
 
 [![xkcd: Automation](http://imgs.xkcd.com/comics/automation.png)](http://xkcd.com/1319/)
 
-Open a terminal window and execute the following commands:
+To install my `dotfiles`, just run the following snippet in [`iTerm2`](https://www.iterm2.com/) or `terminal`:
+
+(⚠️ **DO NOT** run the `install` snippet if you don't fully
+understand what it does. Seriously, **DON'T**!)
 
 Current Version (stable)
 

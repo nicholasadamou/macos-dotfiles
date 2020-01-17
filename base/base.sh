@@ -52,6 +52,63 @@ export PATH=\"/usr/local/sbin:\$PATH\"
     fi
 }
 
+change_default_bash() {
+    local configs=""
+    local pathConfig=""
+
+    local newShellPath=""
+    local brewPrefix=""
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Try to get the path of the `Bash`
+    # version installed through `Homebrew`.
+
+    brewPrefix="$(brew --prefix)"
+
+    pathConfig="PATH=\"$brewPrefix/bin:\$PATH\""
+    configs="# Homebrew bash configurations
+$pathConfig
+export PATH"
+
+    newShellPath="$brewPrefix/bin/bash"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Add the path of the `Bash` version installed through `Homebrew`
+    # to the list of login shells from the `/etc/shells` file.
+    #
+    # This needs to be done because applications use this file to
+    # determine whether a shell is valid (e.g.: `chsh` consults the
+    # `/etc/shells` to determine whether an unprivileged user may
+    # change the login shell for their own account).
+    #
+    # http://www.linuxfromscratch.org/blfs/view/7.4/postlfs/etcshells.html
+
+    if ! grep -q "$(<<<"$newShellPath" tr '\n' '\01')" < <(less "/etc/shells" | tr '\n' '\01'); then
+        printf '%s\n' "$newShellPath" | sudo tee -a /etc/shells
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Set latest version of `Bash` as the default
+    # (macOS uses by default an older version of `Bash`).
+
+    if [ "$(dscl . -read /Users/"${USER}"/ UserShell | cut -d ' ' -f2)" != "${newShellPath}" ]; then
+        chsh -s "$newShellPath" &> /dev/null
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # If needed, add the necessary configs in the
+    # local shell configuration file.
+
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$configs" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
+        printf '%s\n' "$configs" >> "$LOCAL_BASH_CONFIG_FILE" \
+            && . "$LOCAL_BASH_CONFIG_FILE"
+    fi
+}
+
 main() {
 	create_bash_local
 
@@ -59,6 +116,7 @@ main() {
 		ruby -e "$(curl --location --fail --silent --show-error https://raw.githubusercontent.com/Homebrew/install/master/install)"
 		add_brew_configs
 		brew_bundle_install "$DOTFILES_PATH/base/Brewfile"
+		change_default_bash
 	fi
 }
 

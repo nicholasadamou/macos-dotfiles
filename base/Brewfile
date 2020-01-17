@@ -1,3 +1,7 @@
 tap "thoughtbot/formulae"
 
 brew "rcm"
+
+# Install a more recent version of 'bash'.
+brew "bash"
+brew "bash-completion@2"

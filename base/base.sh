@@ -14,6 +14,7 @@ set -o pipefail
 # VARIABLES
 declare DOTFILES_PATH="$HOME/dotfiles"
 declare LOCAL_BASH_CONFIG_FILE="$HOME/.bash.local"
+declare LOCAL_FISH_CONFIG_FILE="$HOME/.fish.local"
 
 # LIBRARY
 source "$DOTFILES_PATH"/lib/brew.sh
@@ -28,6 +29,19 @@ create_bash_local() {
 
 # Add secret/machine specific key/value pairs here.
 # export EXAMPLE=\"An example of a secret/machine-specific key/value.\"
+"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
+        printf "%s\n" "$CONTENT" >> "$FILE_PATH"
+    fi
+}
+
+create_fish_local() {
+    declare -r FILE_PATH="$LOCAL_FISH_CONFIG_FILE"
+	declare -r CONTENT="# Add secret/machine specific key/value pairs here.
+# export EXAMPLE \"An example of a secret/machine-specific key/value.\"
 "
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -152,8 +166,11 @@ install_fisher_packages() {
 }
 
 main() {
+	# Create various system sepcific files.
 	create_bash_local
+	create_fish_local
 
+	# Homebrew
 	if ! command -v brew > /dev/null; then
 		ruby -e "$(curl --location --fail --silent --show-error https://raw.githubusercontent.com/Homebrew/install/master/install)"
 		add_brew_configs
@@ -161,14 +178,13 @@ main() {
 
 	brew_bundle_install "$DOTFILES_PATH/base/Brewfile"
 
+	# Bash
 	change_default_bash
 
+	# Fish
 	install_omf
-
     install_omf_packages
-
 	install_fisher
-
 	install_fisher_packages
 }
 

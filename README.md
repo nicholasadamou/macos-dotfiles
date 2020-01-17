@@ -60,18 +60,20 @@ Edit any of the files in the `.dotfiles/tag-macos` directory
 as you see fit. Then open a terminal window and execute the following command to install:
 
     cd dotfiles
-    bin/run
+    bin/run --base
+    bin/run -l
 
 Executing the `bin/run` script will present the following options:
 
-    s: Show managed dotfiles.
-    c: Check for and remove all broken symlinks in $HOME directory.
-    l: Symlink dotfiles (existing files are skipped).
-    d: Delete dotfiles.
-    q: Quit/Exit.
+    -b|--base: Run the base module.
+    -s: Show managed dotfiles.
+    -c: Check for and remove all broken symlinks in $HOME directory.
+    -l: Symlink dotfiles (existing files are skipped).
+    -d: Delete dotfiles.
+    -h|--help: Print the help message.
 
 The options prompt can be skipped by passing the desired option directly to the `bin/run` script.
-For example, executing `bin/run s` will show all managed dotfiles by this project.
+For example, executing `bin/run -s` will show all managed dotfiles by this project.
 
 After install, the following files will require manual updating:
 
@@ -83,7 +85,8 @@ After install, the following files will require manual updating:
 
 When upgrading to a new version, run the following:
 
-1. Run: `bin/run d` and `bin/run l`
+1. Run: `bin/run -b`
+1. Run: `bin/run -d` and `bin/run -l`
 1. Run: `exec $SHELL`. Updates current shell with the above changes.
 
 ## Versioning

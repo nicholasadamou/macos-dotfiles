@@ -21,7 +21,6 @@ process_option() {
       delete_files;;
 		-h|--help)
 			show_help;;
-    -q);;
     *)
       printf "%s\n" "ERROR: Invalid option.";;
   esac

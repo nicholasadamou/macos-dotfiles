@@ -61,7 +61,6 @@ print_help() {
 	printf "  %s\n" "-c: Check for broken symlinks in \$HOME directorys."
 	printf "  %s\n" "-l: Symlink dotfiles (existing files are skipped)."
 	printf "  %s\n" "-d: Delete dotfiles."
-	printf "  %s\n" "-h: Print this help message."
-	printf "  %s\n\n" "-q: Quit/Exit."
+	printf "  %s\n\n" "-h: Print this help message."
 }
 export -f print_help

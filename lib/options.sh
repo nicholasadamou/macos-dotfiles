@@ -27,6 +27,8 @@ process_option() {
       symlink_files;;
     '-d|d')
       delete_files;;
+		'-h|--help|h|help')
+			show_help;;
     '-q|q');;
     *)
       printf "%s\n" "ERROR: Invalid option.";;

@@ -23,14 +23,7 @@ main() {
 	if [[ -d "$HOME" ]]; then
 		while true; do
 			if [[ $# == 0 ]]; then
-				printf "%s\n" "Dotfile Installer"
-				printf "%s\n" "Usage: $0 [-b|--base|--(no-)base] [-s] [-c] [-l] [-d] [-q]"
-				printf "  %s\n" "-b,--base,--no-base: Run base module (on by default)."
-				printf "  %s\n" "-s: Show managed dotfiles."
-				printf "  %s\n" "-c: Check for broken symlinks in \$HOME directorys."
-				printf "  %s\n" "-l: Symlink dotfiles (existing files are skipped)."
-				printf "  %s\n" "-d: Delete dotfiles."
-				printf "  %s\n\n" "-q: Quit/Exit."
+				print_help
 				read -r -p "[?] Enter selection: " response
 				printf "\n"
 				process_option "$response"

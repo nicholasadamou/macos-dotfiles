@@ -58,8 +58,7 @@ update_dotfiles() {
 		git clone https://github.com/nicholasadamou/macos-dotfiles.git "${DOTFILES_PATH}" && \
 		"${DOTFILES_PATH}"/bin/dotfiles -b && \
 		"${DOTFILES_PATH}"/bin/dotfiles -d && \
-		"${DOTFILES_PATH}"/bin/dotfiles -l && \
-		exec "$SHELL"
+		"${DOTFILES_PATH}"/bin/dotfiles -l
 }
 export -f update_dotfiles
 

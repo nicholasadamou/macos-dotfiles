@@ -23,7 +23,7 @@ more.
 
 - Configures the Bash `.bashrc`, `.bash_profile`, and `.inputrc` files.
 - Configures the `.hushlogin` & `.bash_logout` files.
-- Configures `fish` along with `fisher` and `omf` along with a few of their packages.
+- Configures `fish` along with `fisher` along with a few packages.
 - Configures the [Git](http://git-scm.com) `.gitconfig`.
 - Configures the [Silver Surfer](https://github.com/ggreer/the_silver_searcher) `.agignore` file.
 - Configures the [NPM](https://www.npmjs.org) `.npmrc` file.

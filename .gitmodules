@@ -1,0 +1,15 @@
+[submodule ".dotfiles/tag-macos/config/bash-sensible"]
+	path = .dotfiles/tag-macos/config/bash-sensible
+	url = https://github.com/mrzool/bash-sensible
+[submodule ".dotfiles/tag-macos/tmux/plugins/tpm"]
+	path = .dotfiles/tag-macos/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule ".dotfiles/tag-macos/tacklebox"]
+	path = .dotfiles/tag-macos/tacklebox
+	url = https://github.com/justinmayer/tacklebox
+[submodule ".dotfiles/tag-macos/tackle"]
+	path = .dotfiles/tag-macos/tackle
+	url = https://github.com/justinmayer/tackle
+[submodule ".dotfiles/tag-macos/z.lua"]
+	path = .dotfiles/tag-macos/z.lua
+	url = https://github.com/skywind3000/z.lua

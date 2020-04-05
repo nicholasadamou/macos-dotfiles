@@ -25,8 +25,6 @@ more.
 - Configures the `.hushlogin` & `.bash_logout` files.
 - Configures `fish` along with `fisher` along with a few packages.
 - Configures the [Git](http://git-scm.com) `.gitconfig`.
-- Configures the [Silver Surfer](https://github.com/ggreer/the_silver_searcher) `.agignore` file.
-- Configures the [NPM](https://www.npmjs.org) `.npmrc` file.
 - Configures [Visual Studio Code](https://code.visualstudio.com/) as the default editor.
 - Adds [Bash Completion](http://bash-completion.alioth.debian.org).
 - Adds [GPG](https://www.gnupg.org) support.
